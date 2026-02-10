@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>❤️</title>
+</head>
+<body style="text-align:center;background:#ffc0cb;font-family:Arial;">
+<h1>I Love You ❤️</h1>
+<p>ادخل كلمة السر</p>
+<input type="password" id="p">
+<br><br>
+<button onclick="go()">دخول</button>
+<p id="m"></p>
+
+<script>
+function go(){
+ if(document.getElementById("p").value=="1234"){
+  window.location.href="love.html";
+ }else{
+  document.getElementById("m").innerText="كلمة السر غلط 💔";
+ }
+}
+</script>
+</body>
+</html>
