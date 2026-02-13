@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إلى ودوودي 💋</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff; /* صفحة بيضاء */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* تساقط القلوب */
+        .heart {
+            position: absolute;
+            color: #ff4b2b;
+            font-size: 20px;
+            user-select: none;
+            animation: fall linear infinite;
+            z-index: 0;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+            z-index: 10;
+            max-width: 400px;
+            border: 2px solid #ff4b2b;
+        }
+
+        h1 { color: #ff4b2b; font-size: 2.5rem; margin-bottom: 10px; }
+        p { color: #333; line-height: 1.6; font-size: 1.2rem; }
+        
+        .question-box { margin-top: 25px; }
+        input {
+            padding: 10px;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            width: 80%;
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        button {
+            background: #ff4b2b;
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 20px;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: 0.3s;
+        }
+
+        button:hover { transform: scale(1.1); background: #ff416c; }
+
+        #no-btn {
+            position: absolute;
+            background: #666;
+        }
+
+        .hidden { display: none; }
+        #success-msg { color: #ff4b2b; font-weight: bold; font-size: 1.5rem; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+    <script>
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 3 + 2 + 's';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 5000);
+        }
+        setInterval(createHeart, 300);
+    </script>
+
+    <div class="container">
+        <h1>wedody💋</h1>
+        <p>ودوودي دلوعتي كتكوتي قلبي وحياتي، نحبك اكثر مما تتخيلي. كل حياتي ليا انا بس وانا لكي، انا معاك ديماً بما انك سرقتي قلبي وقعد لكي.. انحبك 💕❤️</p>
+
+        <div class="question-box" id="main-box">
+            <p>سؤال: هل تحبيني؟</p>
+            <button onclick="showPasswordInput()">نعم</button>
+            <button id="no-btn" onmouseover="moveNoButton()">لا</button>
+        </div>
+
+        <div id="password-section" class="hidden">
+            <p>أدخلي كلمة السر (تاريخنا المميز):</p>
+            <input type="text" id="passInput" placeholder="DD/MM/YYYY">
+            <button onclick="checkPassword()">دخول</button>
+        </div>
+
+        <div id="success-msg" class="hidden">
+            أحبك يا أغلى ما عندي! 💍<br>
+            <small>تم تفعيل أغنية (خليك معايا - عمرو دياب)</small>
+            <iframe src="https://www.youtube.com/embed/S_8S_f-V9_A?autoplay=1" width="0" height="0" frameborder="0" allow="autoplay"></iframe>
+        </div>
+    </div>
+
+    <script>
+        function moveNoButton() {
+            const btn = document.getElementById('no-btn');
+            const x = Math.random() * (window.innerWidth - btn.offsetWidth);
+            const y = Math.random() * (window.innerHeight - btn.offsetHeight);
+            btn.style.left = x + 'px';
+            btn.style.top = y + 'px';
+        }
+
+        function showPasswordInput() {
+            document.getElementById('main-box').classList.add('hidden');
+            document.getElementById('password-section').classList.remove('hidden');
+        }
+
+        function checkPassword() {
+            const pass = document.getElementById('passInput').value;
+            if(pass === "18/12/2009") {
+                document.getElementById('password-section').classList.add('hidden');
+                document.getElementById('success-msg').classList.remove('hidden');
+            } else {
+                alert("كلمة السر خطأ.. حاولي مرة أخرى يا حبي");
+            }
+        }
+    </script>
+</body>
+</html>
+
