@@ -1,44 +1,77 @@
-function revealSurprise() {
-    const content = document.getElementById('extra-content');
-    content.classList.remove('hidden');
-    document.getElementById('action-btn').style.display = 'none';
-    
-    // حساب الأيام (مثال: من تاريخ 1 يناير 2024)
-    const startDate = new Date('2024-01-01'); 
-    const today = new Date();
-    const diffTime = Math.abs(today - startDate);
-    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
-    document.getElementById('days-count').innerText = diffDays;
+// حساب الوقت منذ تاريخ التعارف
+function updateTimer() {
+    const startDate = new Date('2025-10-23T00:00:00');
+    const now = new Date();
+    const diff = now - startDate;
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / 1000 / 60) % 60);
+
+    document.getElementById('timer').innerHTML = 
+        `${days} يوم و ${hours} ساعة و ${minutes} دقيقة`;
 }
 
-// كود بسيط لرسم قلوب تتساقط في الخلفية
+setInterval(updateTimer, 1000);
+updateTimer();
+
+// ميزة زر "لا" الهارب
+function moveButton() {
+    const btn = document.getElementById('noBtn');
+    const x = Math.random() * (window.innerWidth - btn.offsetWidth);
+    const y = Math.random() * (window.innerHeight - btn.offsetHeight);
+    btn.style.left = x + 'px';
+    btn.style.top = y + 'px';
+}
+
+// عند قبول العرض
+function accepted() {
+    document.querySelector('.proposal-box').style.display = 'none';
+    document.getElementById('finalMessage').classList.remove('hidden');
+    // إطلاق تأثير قلوب كثيفة
+    setInterval(createHeart, 50);
+}
+
+// التحكم بالموسيقى
+function toggleMusic() {
+    const music = document.getElementById('bgMusic');
+    const btn = document.getElementById('musicControl');
+    if (music.paused) {
+        music.play();
+        btn.innerHTML = "⏸️ إيقاف الموسيقى";
+    } else {
+        music.pause();
+        btn.innerHTML = "🔊 تشغيل الموسيقى";
+    }
+}
+
+// رسم القلوب المتساقطة (خلفية)
 const canvas = document.getElementById('heartCanvas');
 const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-const hearts = [];
+let hearts = [];
 function createHeart() {
     hearts.push({
         x: Math.random() * canvas.width,
-        y: -20,
-        size: Math.random() * 15 + 10,
-        speed: Math.random() * 3 + 1
+        y: canvas.height + 20,
+        size: Math.random() * 20 + 10,
+        speed: Math.random() * 2 + 1,
+        opacity: Math.random()
     });
 }
 
-function drawHearts() {
+function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = '#ff4d6d';
     hearts.forEach((h, i) => {
-        ctx.font = `${h.size}px Arial`;
+        ctx.globalAlpha = h.opacity;
+        ctx.font = h.size + 'px serif';
         ctx.fillText('❤️', h.x, h.y);
-        h.y += h.speed;
-        if (h.y > canvas.height) hearts.splice(i, 1);
+        h.y -= h.speed;
+        if (h.y < -20) hearts.splice(i, 1);
     });
-    requestAnimationFrame(drawHearts);
+    requestAnimationFrame(draw);
 }
-
 setInterval(createHeart, 300);
-drawHearts();
-
+draw();
