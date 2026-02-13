@@ -1,50 +1,0 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>إلى Wedody❤️</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Reem+Kufi&display=swap" rel="stylesheet">
-</head>
-<body>
-    <div class="stars"></div>
-    
-    <div class="container">
-        <div class="glass-card">
-            <div class="floating-hearts">❤️</div>
-            <h1 class="title">إلى حبيبتي Wedody❤️</h1>
-            
-            <div class="love-letter">
-                <p>منذ يوم 23/10/2025، تغيرت حياتي تماماً. أنتِ لستِ مجرد شخص، أنتِ عالمي بأسره.</p>
-                <p>كل يوم يمر، يزداد حبي لكِ ويتعمق في قلبي.</p>
-            </div>
-
-            <div class="counter-section">
-                <p>لقد مضى على أول يوم لنا:</p>
-                <div id="timer"></div>
-            </div>
-
-            <div class="proposal-box">
-                <p class="question">هل تحبيني وتتزوجيني؟</p>
-                <div class="buttons">
-                    <button id="yesBtn" onclick="accepted()">نعم، طبعاً! 💍</button>
-                    <button id="noBtn" onmouseover="moveButton()">لا</button>
-                </div>
-            </div>
-
-            <div id="finalMessage" class="hidden">
-                <h2>أجمل خبر في حياتي! ❤️ أحبك للأبد</h2>
-            </div>
-        </div>
-    </div>
-
-    <audio id="bgMusic" loop>
-        <source src="amr-diab.mp3" type="audio/mpeg">
-    </audio>
-    <button id="musicControl" onclick="toggleMusic()">🔊 تشغيل الموسيقى</button>
-
-    <canvas id="heartCanvas"></canvas>
-    <script src="script.js"></script>
-</body>
-</html>
